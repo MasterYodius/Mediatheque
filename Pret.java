@@ -1,4 +1,4 @@
-package SystemeSimplifie;
+package systemSimplifie;
 
 public class Pret {
 	private int numero;
@@ -36,6 +36,10 @@ public class Pret {
 
 	public void setFin(String fin) {
 		this.fin = fin;
+	}
+	
+	public String toString() {
+		return ""+this.getNumero() + ", Date de début : "+this.getDebut()+", Date de fin : "+this.getFin();
 	}
 	
 	

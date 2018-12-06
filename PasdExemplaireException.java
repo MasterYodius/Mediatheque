@@ -1,4 +1,4 @@
-package SystemeSimplifie;
+package systemSimplifie;
 
 public class PasdExemplaireException extends Exception{
 	

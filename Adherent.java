@@ -1,6 +1,8 @@
-package SystemeSimplifie;
+package systemSimplifie;
 
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Set;
 
 public class Adherent {
 	private String nom;
@@ -59,15 +61,27 @@ public class Adherent {
 	}
 	
 	public void ramener(Exemplaire e) {
+		this.emprunts.remove(e);
+		e.getOeuvre().setNbExCourrant(e.getOeuvre().getNbExCourrant()+1);
 		
 		
 	}
 	
 	public String toString() {
-		String s = ""+this.getNom()+" "+this.getPrenom()+" "+this.getAdresse()+"\n";
-		for(int i = 0; i < this.emprunts.size(); i++) {
-			s = s + this.emprunts.
+		String s = "\nNom: "+this.getNom()+"\nPrénom: "+this.getPrenom()+" \nAdresse: "+this.getAdresse()+"\n";
+		Set<Exemplaire> keySet = this.emprunts.keySet();
+		Iterator<Exemplaire> it = keySet.iterator();
+		while(it.hasNext()) {
+			Exemplaire key = (Exemplaire) it.next();
+			
+			
+			String valeur = this.emprunts.get(key).toString();
+			
+			s = s + "[Numéro exemplaire: "+key +" Titre: "+key.getOeuvre().getTitre()+  "] [Numéro du Prêt : " + valeur +"]\n";
 		}
+		
+		
+		return s;
 		
 		
 	}

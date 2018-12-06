@@ -1,14 +1,16 @@
-package SystemeSimplifie;
+package systemSimplifie;
 
 public class Exemplaire {
 	private int numero;
 	private static int nextNum = 0;
 	private boolean disponible;
+	private Oeuvre oeuvre;
 	
-	public Exemplaire() {
+	public Exemplaire(Oeuvre o) {
 		this.numero = this.nextNum;
 		Exemplaire.nextNum++;
 		this.setDisponible(true);
+		this.setOeuvre(o);
 		
 	}
 
@@ -32,6 +34,16 @@ public class Exemplaire {
 	public String toString() {
 		return ""+this.getNumero();
 	}
+
+	public Oeuvre getOeuvre() {
+		return oeuvre;
+	}
+
+	public void setOeuvre(Oeuvre oeuvre) {
+		this.oeuvre = oeuvre;
+	}
+
+	
 
 	
 

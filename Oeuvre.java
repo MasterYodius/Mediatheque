@@ -1,4 +1,4 @@
-package SystemeSimplifie;
+package systemSimplifie;
 
 import java.util.ArrayList;
 
@@ -15,9 +15,9 @@ public class Oeuvre {
 		this.setNbExemplaire(nb);
 		this.exemplaires = new ArrayList<Exemplaire>();
 		for(int i = 0; i < nb; i++) {
-			this.exemplaires.add(new Exemplaire());
+			this.exemplaires.add(new Exemplaire(this));
 		}
-		this.nbExemplaire = nb;
+		this.nbExCourrant = nb;
 	}
 
 	public String getTitre() {
