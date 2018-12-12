@@ -1,6 +1,8 @@
 package systemSimplifie;
 
-public class Pret {
+import java.io.Serializable;
+
+public class Pret implements Serializable{
 	private int numero;
 	private String debut;
 	private String fin;

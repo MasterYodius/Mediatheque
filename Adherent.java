@@ -1,10 +1,12 @@
 package systemSimplifie;
 
+import java.io.Serializable;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.Vector;
 
-public class Adherent {
+public class Adherent implements Serializable{
 	private String nom;
 	private String prenom;
 	private String adresse;
@@ -60,10 +62,25 @@ public class Adherent {
 		
 	}
 	
+	
 	public void ramener(Exemplaire e) {
 		this.emprunts.remove(e);
 		e.getOeuvre().setNbExCourrant(e.getOeuvre().getNbExCourrant()+1);
 		
+		
+	}
+	
+	public Vector getExemplairesEmpruntes() {
+		Vector v = new Vector<Exemplaire>();
+		Set<Exemplaire> keySet = this.emprunts.keySet();
+		Iterator<Exemplaire> it = keySet.iterator();
+		while(it.hasNext()) {
+			Exemplaire key = (Exemplaire)it.next();
+			System.out.println(key.toString());
+			v.add(key);
+			
+		}
+		return v;
 		
 	}
 	

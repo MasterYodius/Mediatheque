@@ -1,8 +1,9 @@
 package systemSimplifie;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Oeuvre {
+public class Oeuvre implements Serializable{
 	private String titre;
 	private String auteur;
 	private int nbExemplaire;

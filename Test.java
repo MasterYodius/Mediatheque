@@ -1,63 +1,27 @@
 package systemSimplifie;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.util.Vector;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+
 public class Test {
 
 	public static void main(String[] args)  {
-		// TODO Auto-generated method stub
-	
-		/*Oeuvre o = new Oeuvre("Harry Potter", "JK Rowling", 5);
-		Oeuvre o2 = new Oeuvre("Harry Potter 2", "JK Rowling", 1);
-		Oeuvre o3 = new Oeuvre("Harry Potter 3", "JK Rowling", 3);
-		Oeuvre o4 = new Oeuvre("Harry Potter 4", "JK Rowling", 2);
-		Oeuvre o5 = new Oeuvre("Harry Potter 5", "JK Rowling", 4);
-		Oeuvre o6 = new Oeuvre("Harry Potter 6", "JK Rowling", 8);
-		Oeuvre o7 = new Oeuvre("Harry Potter 7", "JK Rowling", 1);
-		
-		Adherent a1 = new Adherent("OUDNI", "Alexandre", "70 avenue Jean Lolive");
-		
-	//	System.out.println(o2.getNbExCourrant());
-	
-		try {
-			a1.emprunter(o);
-		
-			a1.emprunter(o);
-			a1.emprunter(o);
-			a1.emprunter(o);
-			a1.emprunter(o);
-			a1.emprunter(o3);
-			a1.emprunter(o2);
-			a1.emprunter(o2);
-			a1.emprunter(o7);
-		
-		}catch (PasdExemplaireException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		System.out.println(a1.toString());
-		
-		/*try {
-			a1.emprunter(o);
-		 
-		a1.emprunter(o2);
-		a1.emprunter(o3);
-		a1.emprunter(o4);
-		a1.emprunter(o4);
-		a1.emprunter(o2);
-		a1.emprunter(o7);
-		}catch (PasdExemplaireException e) {
-			// TODO Auto-generated catch block
-			
-		}
+		JFrame fenetre = new JFrame("Médiathèque");
+		Dimension ecran = Toolkit.getDefaultToolkit().getScreenSize();
+		/*fenetre.setPreferredSize(new Dimension(ecran.width, ecran.height));
+		fenetre.setLocation(ecran.width / 4, ecran.height / 4);
 		*/
-	/*	try {
-			a1.emprunter(o);
-		} catch (PasdExemplaireException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		a1.toString();
-		*/
+		fenetre.setSize(ecran.width/4, ecran.height/4);
+		
+		
+		
+		
+		
+		
 		  try{          
 			  Adherent adherent1 = new Adherent( "Albert", "Durant", "2 allee tataouine" ) ;             
 			  Adherent adherent2 = new Adherent( "Joseph", "Beauve", "14 rue de la grange" ) ;                       
@@ -75,7 +39,27 @@ public class Test {
 			  liste.addAdherent(adherent1);
 			  liste.addAdherent(adherent2);
 			  System.out.println(liste.toString());
-	 
+			  /*Vector v = adherent1.getExemplairesEmpruntes();
+			  String s = "";
+			  for(int i = 0;i<v.size();i++) {
+				  s = s + v.get(i).toString()+"\n";
+			  }
+			  System.out.println(s);
+	 */
+			  liste.sauvegarder();
+			  Adherents liste2 = new Adherents();
+			  liste2.restaurer();
+			  System.out.println(liste2.toString());
+			  
+			  
+			  Menu menu = new Menu(liste);
+				
+				fenetre.setJMenuBar(menu);
+				
+				
+				
+				fenetre.setVisible(true);
+			  
 	        } catch( Exception e ){             
 	        	e.printStackTrace() ;         
 	        	}

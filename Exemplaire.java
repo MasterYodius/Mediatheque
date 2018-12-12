@@ -1,6 +1,8 @@
 package systemSimplifie;
 
-public class Exemplaire {
+import java.io.Serializable;
+
+public class Exemplaire implements Serializable{
 	private int numero;
 	private static int nextNum = 0;
 	private boolean disponible;
@@ -32,7 +34,7 @@ public class Exemplaire {
 	
 	
 	public String toString() {
-		return ""+this.getNumero();
+		return ""+this.getNumero() + " " + this.getOeuvre().getTitre();
 	}
 
 	public Oeuvre getOeuvre() {
