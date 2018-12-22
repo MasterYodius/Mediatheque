@@ -27,11 +27,39 @@ public class Adherents implements Serializable{
 	public Adherent getAdherent(String n, String p,String a) {
 		Adherent res = null;
 		for(Adherent ad : this.listeAdherents) {
-			if((ad.getNom() == n) && (ad.getPrenom() == p) && (ad.getAdresse() == a))
+			if((ad.getNom().equals(n)) && (ad.getPrenom().equals(p)) && (ad.getAdresse().equals(a)))
 				res = ad;
 			break;
 			}
 		return res;
+		
+	}
+	
+	public Adherent getAdherent2(String n, String p) {
+		Adherent res = null;
+		for(Adherent ad : this.listeAdherents) {
+			System.out.println("Nom  : "+n +" nom courant :" +ad.getNom());
+			
+			if((ad.getNom().equals(n)) && (ad.getPrenom().equals(p))) {
+				System.out.println("entré");
+				res = ad;
+				break;
+			}
+			}
+		return res;
+	}
+	
+	public ArrayList<Adherent> AdherentsRetard() {
+		ArrayList<Adherent> retards = new ArrayList<Adherent>();
+		for(Adherent a : this.listeAdherents) {
+			for(int i =0; i<a.getNbPret();i++) {
+				if(a.DelaiDepasse(i) == true) {
+					retards.add(a);
+					break;
+				}
+			}
+		}
+		return retards;
 		
 	}
 	
@@ -40,6 +68,19 @@ public class Adherents implements Serializable{
 		
 	}
 	*/
+	
+	public int getNbadherent() {
+		return this.listeAdherents.size();
+	}
+	
+	public ArrayList<Adherent> getList(){
+		return this.listeAdherents;
+	}
+	
+	public void supprimer(Adherent a) {
+		this.listeAdherents.remove(a);
+	}
+	
 	
 	public void sauvegarder() {
 		try {
@@ -58,6 +99,7 @@ public class Adherents implements Serializable{
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void restaurer() {
 		try {
 			FileInputStream file = new FileInputStream("listeAdherents");
@@ -87,5 +129,7 @@ public class Adherents implements Serializable{
 		}
 		return s;
 	}
+	
+	
 
 }

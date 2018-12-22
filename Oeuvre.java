@@ -64,6 +64,9 @@ public class Oeuvre implements Serializable{
 		return res;
 	}
 	
-	
+	public String toString() {
+		return "Titre : "+ this.getTitre() +"    Auteur : "+ this.getAuteur()+"    Nombre d'exemplaires disponibles : " + this.getNbExCourrant();
+		
+	}
 
 }

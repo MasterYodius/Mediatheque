@@ -1,6 +1,7 @@
 package systemSimplifie;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Set;
@@ -43,7 +44,7 @@ public class Adherent implements Serializable{
 		this.adresse = adresse;
 	}
 	
-	public Exemplaire emprunter(Oeuvre o) throws PasdExemplaireException {
+	public Exemplaire emprunter(Oeuvre o,int d,int fin) throws PasdExemplaireException {
 		if(o.getNbExCourrant() == 0) {
 			throw new PasdExemplaireException("Il n'y a pas d'exemplaire disponible");
 			
@@ -52,7 +53,7 @@ public class Adherent implements Serializable{
 			o.setNbExCourrant(o.getNbExCourrant() - 1);
 			Exemplaire exemplaire = o.checkDispo();
 			exemplaire.setDisponible(false);
-			Pret pret = new Pret("10/12/1995","10/12/2018");
+			Pret pret = new Pret(Time.add_time(Time.current_time(), -d),Time.add_time(Time.current_time(), fin));
 			this.emprunts.put(exemplaire, pret);
 			return exemplaire;
 		}
@@ -83,6 +84,70 @@ public class Adherent implements Serializable{
 		return v;
 		
 	}
+	
+	public int getNbPret() {
+		return this.emprunts.size();
+	}
+	
+	public String affichePret(int i) {
+		//return this.emprunts.get(i).toString();
+		ArrayList<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
+		ArrayList<Pret> prets = new ArrayList<Pret>();
+		
+		Set<Exemplaire> keySet = this.emprunts.keySet();
+		Iterator<Exemplaire> it = keySet.iterator();
+		while(it.hasNext()) {
+			Exemplaire key = (Exemplaire)it.next();
+			Pret vPret = this.emprunts.get(key);
+			exemplaires.add(key);
+			prets.add(vPret);
+			
+			}
+		return ""+prets.get(i) + " " +exemplaires.get(i);
+		}
+		
+	public boolean verifRetard() {
+		boolean res = true;
+		ArrayList<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
+		ArrayList<Pret> prets = new ArrayList<Pret>();
+			
+		Set<Exemplaire> keySet = this.emprunts.keySet();
+		Iterator<Exemplaire> it = keySet.iterator();
+		while(it.hasNext()) {
+			Exemplaire key = (Exemplaire)it.next();
+			Pret vPret = this.emprunts.get(key);
+			exemplaires.add(key);
+			prets.add(vPret);
+		}
+		
+		for(Pret p : prets ) {
+			if(p.Depasse() == false) {
+				res = false;
+				break;
+			}
+		}
+		return res;
+		
+	}
+		
+	public boolean DelaiDepasse(int i) {
+		ArrayList<Exemplaire> exemplaires = new ArrayList<Exemplaire>();
+		ArrayList<Pret> prets = new ArrayList<Pret>();
+			
+		Set<Exemplaire> keySet = this.emprunts.keySet();
+		Iterator<Exemplaire> it = keySet.iterator();
+		while(it.hasNext()) {
+				Exemplaire key = (Exemplaire)it.next();
+				Pret vPret = this.emprunts.get(key);
+				exemplaires.add(key);
+				prets.add(vPret);
+				
+				}
+		return prets.get(i).Depasse();
+	}
+	
+	
+		
 	
 	public String toString() {
 		String s = "\nNom: "+this.getNom()+"\nPrénom: "+this.getPrenom()+" \nAdresse: "+this.getAdresse()+"\n";

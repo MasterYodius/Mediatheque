@@ -1,13 +1,17 @@
 package systemSimplifie;
 
+import java.awt.FlowLayout;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 public class Menu extends JMenuBar{
 	
@@ -22,7 +26,7 @@ public class Menu extends JMenuBar{
 	private JMenuItem consulterO = new JMenuItem("Consulter");
 	private JMenuItem supprimerO = new JMenuItem("Supprimer");
 	
-	public Menu(Adherents listeAdherent) {
+	public Menu(Adherents listeAdherent,ListeOeuvre listeOeuvre) {
 		this.add(adherents);
 		adherents.add(nouveauA);
 		adherents.add(consulterA);
@@ -34,13 +38,29 @@ public class Menu extends JMenuBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				JFrame fenetreConsulter = new JFrame("Consulter Adherents"); 
-				JComboBox listeA = new JComboBox();
+				ConsulterAdherent fen = new ConsulterAdherent(listeAdherent);
 				
 				
-				fenetreConsulter.setSize(500,200);
-				fenetreConsulter.setVisible(true);
 				
+			}
+		});
+		
+		nouveauA.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				NouveauAdh fenNewA = new NouveauAdh(listeAdherent);
+				
+			}
+		});
+		
+		supprimerA.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				SupprimerAdh fenSupA = new SupprimerAdh(listeAdherent);
 				
 			}
 		});
@@ -49,6 +69,33 @@ public class Menu extends JMenuBar{
 		oeuvre.add(nouveauO);
 		oeuvre.add(consulterO);
 		oeuvre.add(supprimerO);
+		
+		nouveauO.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				NouveauOeuvre fenNO = new NouveauOeuvre(listeOeuvre);
+			}
+		});
+		
+		consulterO.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ConsulterOeuvre fenConOe = new ConsulterOeuvre(listeOeuvre);
+			}
+		});
+		
+		supprimerO.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				SupprimerOeuvre fenSO = new SupprimerOeuvre(listeOeuvre);
+			}
+		});
 		
 		
 		

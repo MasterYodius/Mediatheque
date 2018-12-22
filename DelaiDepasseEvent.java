@@ -10,6 +10,10 @@ public class DelaiDepasseEvent extends EventObject{
 		super(a);
 		}
 	
+	public Adherent getAdherent() {
+		return this.adherent;
+	}
+	
 	
 	
 
